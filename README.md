@@ -1,6 +1,8 @@
-# browser-mcp
+# XMCP
 
-A browser extension and MCP server that allows you to interact with the browser you are using.
+XMCP is a fork of [browser-mcp](https://github.com/djyde/browser-mcp) - a browser extension and MCP server that allows you to interact with the browser you are using.
+
+> **Note:** This project is forked from the original browser-mcp repository at https://github.com/djyde/browser-mcp
 
 ![mcp](https://github.com/user-attachments/assets/8464d4dc-7192-4d89-be05-bdcbaf0b5807)
 

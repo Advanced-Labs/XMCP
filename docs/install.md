@@ -1,6 +1,8 @@
-# Browser-MCP Installation & Setup Guide
+# XMCP Installation & Setup Guide
 
-Complete installation guide for both the MCP server and browser extension components.
+Complete installation guide for XMCP - a fork of browser-mcp that includes both MCP server and browser extension components.
+
+> **Note:** XMCP is forked from the original browser-mcp repository at https://github.com/djyde/browser-mcp
 
 ## Prerequisites
 
@@ -51,8 +53,8 @@ iwr https://get.pnpm.io/install.ps1 -useb | iex
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/djyde/browser-mcp.git
-cd browser-mcp
+git clone https://github.com/Advanced-Labs/XMCP.git
+cd XMCP
 ```
 
 ### 2. Clean Previous Installations (Important!)
@@ -116,9 +118,9 @@ To use with Claude Desktop, add this to your MCP configuration:
 ```json
 {
   "mcpServers": {
-    "browser-mcp": {
+    "XMCP": {
       "command": "node",
-      "args": ["/path/to/browser-mcp/server/dist/cli.js"]
+      "args": ["/path/to/your/XMCP/server/dist/cli.js"]
     }
   }
 }
@@ -172,15 +174,15 @@ pnpm -C extension dev:firefox
 3. Enable "Developer mode" (toggle in top-right)
 4. Click "Load unpacked"
 5. Select the appropriate folder:
-   - **Chrome:** `browser-mcp/extension/.output/chrome-mv3/`
-   - **Edge:** `browser-mcp/extension/.output/edge-mv3/`
+   - **Chrome:** `extension/.output/chrome-mv3/`
+   - **Edge:** `extension/.output/edge-mv3/`
 
 #### Firefox Installation
 1. Open Firefox
 2. Navigate to `about:debugging`
 3. Click "This Firefox" in the left sidebar
 4. Click "Load Temporary Add-on"
-5. Navigate to `browser-mcp/extension/.output/firefox-mv3/`
+5. Navigate to `extension/.output/firefox-mv3/`
 6. Select the `manifest.json` file
 
 ### Extension Build Output Locations
@@ -354,17 +356,17 @@ pnpm -C extension zip:firefox  # Firefox zip
 ```
 
 ### System Service (Linux)
-Create a systemd service file at `/etc/systemd/system/browser-mcp.service`:
+Create a systemd service file at `/etc/systemd/system/xmcp.service`:
 
 ```ini
 [Unit]
-Description=Browser MCP Server
+Description=XMCP Server
 After=network.target
 
 [Service]
 Type=simple
 User=your-user
-WorkingDirectory=/path/to/browser-mcp
+WorkingDirectory=/path/to/your/XMCP
 ExecStart=/usr/bin/node server/dist/cli.js
 Restart=always
 RestartSec=10
@@ -375,8 +377,8 @@ WantedBy=multi-user.target
 
 Enable and start:
 ```bash
-sudo systemctl enable browser-mcp
-sudo systemctl start browser-mcp
+sudo systemctl enable xmcp
+sudo systemctl start xmcp
 ```
 
 ### Docker Deployment
@@ -398,8 +400,8 @@ CMD ["node", "server/dist/cli.js"]
 
 Build and run:
 ```bash
-docker build -t browser-mcp .
-docker run -p 11223:11223 browser-mcp
+docker build -t xmcp .
+docker run -p 11223:11223 xmcp
 ```
 
 ## Environment-Specific Notes
@@ -420,4 +422,4 @@ docker run -p 11223:11223 browser-mcp
 - May need to install build tools: `sudo apt install build-essential`
 - Check firewall rules for port 11223
 
-This guide covers all installation scenarios and troubleshooting steps discovered during analysis of the browser-mcp project.
+This guide covers all installation scenarios and troubleshooting steps for XMCP (forked from browser-mcp).
